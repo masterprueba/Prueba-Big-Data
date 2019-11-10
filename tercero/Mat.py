@@ -1,20 +1,33 @@
-class Operaciones:
+import abc
+
+ABC = abc.ABCMeta('ABC', (object,), {'__slots__': ()}) 
+
+"""
+    Clase abstracta para obligar a usar los siguientes metodos que necesita la clase principal
+
+"""
+class Operaciones(ABC):
     
-    
+    @abc.abstractmethod
     def suma(self, pol_a,pol_b):
-        pass
+        raise NotImplementedError()
     
     def resta(self,pol_a,pol_b):
-        pass
+        raise NotImplementedError()
 
     def multiplicacion(self,pol_a,pol_b):
-        pass
+        raise NotImplementedError()
 
     def multiplicaEscalar(self,escala,pol):    
-        pass
+        raise NotImplementedError()
     
     def evaluar(self,x,pol):
-        pass
+        raise NotImplementedError()
+
+"""
+    Clase que implementa los metodos de la clase abstracta operaciones
+
+"""
 
 class OpPolinomial(Operaciones):
     
@@ -70,6 +83,11 @@ class OpPolinomial(Operaciones):
             valor = pol.coeficiente[i] +(x * valor)
         return valor
 
+"""
+    Clase entidad del polinomio que se le quito la responsabilidad de las operaciones a realizar
+
+"""
+
 class Polinomio():
     def __init__(self,coef=[],grado=0):        
         self._coeficiente = []
@@ -102,6 +120,10 @@ class Polinomio():
         else:
             self.grado = g
    
+"""
+    Clase principal
+
+"""
 
 class ObjAlgrebraico:
 
